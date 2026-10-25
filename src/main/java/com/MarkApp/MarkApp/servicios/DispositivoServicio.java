@@ -27,7 +27,7 @@ public class DispositivoServicio {
     @Transactional
     public DispositivoEmpleado vincularPrimerDispositivo(Colaborador colaborador,DispositivoEmpleado dispositivoEmpleado){
 
-        boolean tieneDispositivoActivo = dispositivoEmpleadoRepositorio.existsByColaborador_IdAndActiveTrue(colaborador.getId());
+        boolean tieneDispositivoActivo = dispositivoEmpleadoRepositorio.existsByColaborador_IdAndActivoTrue(colaborador.getId());
 
         if (tieneDispositivoActivo){
             throw new IllegalStateException("El colaborador ya tiene un dispositivo activo");

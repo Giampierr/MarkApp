@@ -16,6 +16,7 @@ public class Supervisor {
     @Column(nullable = false,unique = true)
     private String correo;
 
+    @Column(nullable = false,length = 255)
     private String password;
 
     @Enumerated(EnumType.STRING)
@@ -25,5 +26,43 @@ public class Supervisor {
     public Supervisor() {
     }
 
+    public int getIdSupervisor() {
+        return idSupervisor;
+    }
 
+    public void setIdSupervisor(int idSupervisor) {
+        this.idSupervisor = idSupervisor;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public RolSupervisor getRolSupervisor() {
+        return rolSupervisor;
+    }
+
+    public void setRolSupervisor(RolSupervisor rolSupervisor) {
+        this.rolSupervisor = rolSupervisor;
+    }
 }

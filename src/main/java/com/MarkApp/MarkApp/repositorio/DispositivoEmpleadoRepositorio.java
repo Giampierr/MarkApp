@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface DispositivoEmpleadoRepositorio extends JpaRepository<DispositivoEmpleado,Integer> {
 
 
-    boolean existsByColaborador_IdAndActiveTrue(Integer idDispositivo);
+    boolean existsByColaborador_IdAndActivoTrue(Integer idDispositivo);
 
     Optional<DispositivoEmpleado>findByColaborador_IdAndActivoTrue(Integer idColaborador);
 }

@@ -1,6 +1,5 @@
 package com.MarkApp.MarkApp.modelo;
 
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -24,12 +23,13 @@ public class DetalleRefrigerio {
     private Colaborador colaborador;
 
     private LocalDate fecha;
+
     private LocalTime horaSalidaRefrigerio;
     private String firmaSalida;
 
-    @Nullable
+    @Column(nullable = true)
     private LocalTime horaRetornoRefrigerio;
-    @Nullable
+    @Column(nullable = true)
     private String firmaRetorno;
 
     public DetalleRefrigerio() {

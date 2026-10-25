@@ -21,7 +21,7 @@ public class DispositivoEmpleado {
     private String nombreDispositivo;
     private String plataforma;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private LocalDateTime fechaVinculacion;
 
     @Column(nullable = false)

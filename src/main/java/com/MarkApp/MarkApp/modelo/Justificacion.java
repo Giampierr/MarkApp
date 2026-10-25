@@ -26,8 +26,8 @@ public class Justificacion {
     private String respuestaSupervisor;
     private LocalDateTime horaRespuestaSupervisor;
 
-    @Enumerated
-    @Column(name = "estado")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "estado",nullable = false)
     private EstadoJustificacion estadoJustificacion;
 
     public Justificacion() {

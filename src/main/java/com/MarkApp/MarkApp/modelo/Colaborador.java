@@ -1,6 +1,5 @@
 package com.MarkApp.MarkApp.modelo;
 
-import com.MarkApp.MarkApp.enums.Cargos;
 import com.MarkApp.MarkApp.enums.Jornada;
 import com.MarkApp.MarkApp.enums.RegimenPensionario;
 import jakarta.persistence.*;
@@ -15,11 +14,12 @@ public class Colaborador {
 
     private String nombres;
     private String apellidos;
+
+    @Column(unique = true,nullable = false,length = 8)
     private String dni;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "cargo")
-    private Cargos cargo;
+    @Column(name = "cargo", nullable = false)
+    private String cargo;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "jornada")
@@ -31,7 +31,10 @@ public class Colaborador {
 
     @Column(nullable = false,unique = true)
     private String correo;
+
+    @Column(nullable = false,length = 255)
     private String password;
+
     public Colaborador() {
     }
 
@@ -67,11 +70,11 @@ public class Colaborador {
         this.dni = dni;
     }
 
-    public Cargos getCargo() {
+    public String getCargo() {
         return cargo;
     }
 
-    public void setCargo(Cargos cargo) {
+    public void setCargo(String cargo) {
         this.cargo = cargo;
     }
 

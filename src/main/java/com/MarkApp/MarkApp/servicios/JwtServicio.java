@@ -12,13 +12,14 @@ import java.time.Instant;
 import java.util.Date;
 
 @Service
-public class JwtService {
+public class JwtServicio {
     private final SecretKey signinKey;
 
-    public JwtService(@Value("${jwt.secret}")String secret){
+    public JwtServicio(@Value("${jwt.secret}")String secret){
         byte [] keyBytes = Decoders.BASE64.decode(secret);
         this.signinKey = Keys.hmacShaKeyFor(keyBytes);
     }
+
 
     public String generarToken(String idUsuario,String tipoUsuario,String rol){
         Instant ahora = Instant.now();
@@ -28,7 +29,8 @@ public class JwtService {
                 .subject(idUsuario)
                 .claim("tipoUsuario",tipoUsuario)
                 .claim("rol",rol)
-                .issuedAt(Date.from(expiracion))
+                .issuedAt(Date.from(ahora))
+                .expiration(Date.from(expiracion))
                 .signWith(signinKey)
                 .compact();
     }

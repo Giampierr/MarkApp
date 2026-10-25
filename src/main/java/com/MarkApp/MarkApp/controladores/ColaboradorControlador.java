@@ -1,31 +1,39 @@
+
 package com.MarkApp.MarkApp.controladores;
 
 import com.MarkApp.MarkApp.modelo.Colaborador;
 import com.MarkApp.MarkApp.repositorio.ColaboradorRepositorio;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.MarkApp.MarkApp.servicios.ColaboradorServicio;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("")
+@RequestMapping("/api/colaboradores")
 public class ColaboradorControlador {
-    private final ColaboradorRepositorio colaboradorRepositorio;
 
-    public ColaboradorControlador(ColaboradorRepositorio colaboradorRepositorio) {
+    private final ColaboradorRepositorio colaboradorRepositorio;
+    private final ColaboradorServicio colaboradorServicio;
+
+    public ColaboradorControlador(ColaboradorRepositorio colaboradorRepositorio, ColaboradorServicio colaboradorServicio) {
         this.colaboradorRepositorio = colaboradorRepositorio;
+        this.colaboradorServicio = colaboradorServicio;
     }
 
-
     @GetMapping
-    public List<Colaborador> listarColaboradores(){
+    public List<Colaborador> listarColaboradores() {
         return colaboradorRepositorio.findAll();
     }
 
     @PostMapping
-    public void añadirColaborador(Colaborador colaborador){
-        colaboradorRepositorio.save(colaborador);
+    public ResponseEntity<Colaborador> añadirColaborador(
+            @RequestBody Colaborador colaborador) {
+
+        Colaborador guardado =
+                colaboradorServicio.registrar(colaborador);
+
+        return ResponseEntity.status(201).body(guardado);
     }
 }
