@@ -1,0 +1,31 @@
+package com.MarkApp.MarkApp.controladores;
+
+import com.MarkApp.MarkApp.modelo.DetalleAsistencia;
+import com.MarkApp.MarkApp.servicios.DetalleAsistenciaServicio;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api/asistencias")
+public class DetalleAsistenciaControlador {
+    private final DetalleAsistenciaServicio asistenciaServicio;
+
+    public DetalleAsistenciaControlador(DetalleAsistenciaServicio asistenciaServicio) {
+        this.asistenciaServicio = asistenciaServicio;
+    }
+
+    @PostMapping("/ingreso/{idColaborador}")
+    public ResponseEntity<DetalleAsistencia> registrarAsistencia(@PathVariable int idColaborador){
+        DetalleAsistencia asistencia = asistenciaServicio.registrarIngreso(idColaborador);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(asistencia);
+    }
+
+    @PatchMapping("/salida/{idColaborador}")
+    public ResponseEntity<DetalleAsistencia> registrarSalida(@PathVariable int idColaborador){
+        DetalleAsistencia asistencia = asistenciaServicio.registrarSalida(idColaborador);
+
+        return ResponseEntity.ok(asistencia);
+    }
+}

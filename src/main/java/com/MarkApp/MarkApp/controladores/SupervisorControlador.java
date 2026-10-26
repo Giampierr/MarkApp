@@ -1,9 +1,7 @@
 package com.MarkApp.MarkApp.controladores;
 
 import com.MarkApp.MarkApp.modelo.Supervisor;
-import com.MarkApp.MarkApp.repositorio.ColaboradorRepositorio;
 import com.MarkApp.MarkApp.repositorio.SupervisorRepositorio;
-import com.MarkApp.MarkApp.servicios.ColaboradorServicio;
 import com.MarkApp.MarkApp.servicios.SupervisorServicio;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -34,7 +34,7 @@ public class Colaborador {
 
     @Column(nullable = false,length = 255)
     private String password;
-
+    
     public Colaborador() {
     }
 

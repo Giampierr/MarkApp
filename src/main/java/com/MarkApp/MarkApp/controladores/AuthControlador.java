@@ -2,6 +2,7 @@ package com.MarkApp.MarkApp.controladores;
 
 import com.MarkApp.MarkApp.dto.LoginRequestDTO;
 import com.MarkApp.MarkApp.dto.LoginRespuestaDTO;
+import com.MarkApp.MarkApp.dto.SolicitudRecuperacionDTO;
 import com.MarkApp.MarkApp.servicios.AuthServicio;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,4 +38,6 @@ public class AuthControlador {
 
         return ResponseEntity.ok(respuesta);
     }
+
+
 }

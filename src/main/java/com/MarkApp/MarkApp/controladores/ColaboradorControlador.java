@@ -1,6 +1,7 @@
 
 package com.MarkApp.MarkApp.controladores;
 
+import com.MarkApp.MarkApp.dto.ColaboradorCambiosDTO;
 import com.MarkApp.MarkApp.modelo.Colaborador;
 import com.MarkApp.MarkApp.repositorio.ColaboradorRepositorio;
 import com.MarkApp.MarkApp.servicios.ColaboradorServicio;
@@ -35,5 +36,16 @@ public class ColaboradorControlador {
                 colaboradorServicio.registrar(colaborador);
 
         return ResponseEntity.status(201).body(guardado);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Colaborador> actualizarParcialmente(
+            @PathVariable int id,
+            @RequestBody ColaboradorCambiosDTO cambios
+            ){
+
+        Colaborador actualizado = colaboradorServicio.actualizarParcialmente(id, cambios);
+
+        return ResponseEntity.ok(actualizado);
     }
 }

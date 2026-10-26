@@ -25,12 +25,9 @@ public class DetalleRefrigerio {
     private LocalDate fecha;
 
     private LocalTime horaSalidaRefrigerio;
-    private String firmaSalida;
 
     @Column(nullable = true)
     private LocalTime horaRetornoRefrigerio;
-    @Column(nullable = true)
-    private String firmaRetorno;
 
     public DetalleRefrigerio() {
     }
