@@ -8,4 +8,8 @@ import java.util.Optional;
 public interface ColaboradorRepositorio extends JpaRepository<Colaborador,Integer> {
 
     Optional<Colaborador> findByCorreo(String correo);
+
+    Integer id(int id);
+
+    Integer id(int id);
 }
