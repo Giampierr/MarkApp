@@ -32,4 +32,52 @@ public class Sucursal {
 
     public Sucursal() {
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public BigDecimal getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(BigDecimal latitud) {
+        this.latitud = latitud;
+    }
+
+    public BigDecimal getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(BigDecimal longitud) {
+        this.longitud = longitud;
+    }
+
+    public Integer getRadioGeocercaMetros() {
+        return radioGeocercaMetros;
+    }
+
+    public void setRadioGeocercaMetros(Integer radioGeocercaMetros) {
+        this.radioGeocercaMetros = radioGeocercaMetros;
+    }
+
+    public Integer getPrecisionGpsMaximaMetros() {
+        return precisionGpsMaximaMetros;
+    }
+
+    public void setPrecisionGpsMaximaMetros(Integer precisionGpsMaximaMetros) {
+        this.precisionGpsMaximaMetros = precisionGpsMaximaMetros;
+    }
 }

@@ -1,5 +1,6 @@
 package com.MarkApp.MarkApp.modelo;
 
+import com.MarkApp.MarkApp.enums.TipoAsistencia;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -29,15 +30,12 @@ public class DetalleAsistencia {
 
     private LocalTime horaSalida;
 
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipo_asistencia",nullable = false)
+    private TipoAsistencia tipoAsistencia;
+
     public DetalleAsistencia() {
-    }
-
-    public int getIdAsistencia() {
-        return idAsistencia;
-    }
-
-    public void setIdAsistencia(int idAsistencia) {
-        this.idAsistencia = idAsistencia;
     }
 
     public Colaborador getColaborador() {
@@ -74,4 +72,11 @@ public class DetalleAsistencia {
     }
 
 
+    public TipoAsistencia getTipoAsistencia() {
+        return tipoAsistencia;
+    }
+
+    public void setTipoAsistencia(TipoAsistencia tipoAsistencia) {
+        this.tipoAsistencia = tipoAsistencia;
+    }
 }

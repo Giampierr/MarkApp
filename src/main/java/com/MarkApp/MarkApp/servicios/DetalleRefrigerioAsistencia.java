@@ -58,10 +58,7 @@ public class DetalleRefrigerioAsistencia {
         Colaborador colaborador =
                 colaboradorRepositorio.findById(idColaborador)
                         .orElseThrow(() ->
-                                new ResponseStatusException(
-                                        HttpStatus.NOT_FOUND,
-                                        "Colaborador no encontrado"
-                                )
+                                new ResponseStatusException(HttpStatus.NOT_FOUND, "Colaborador no encontrado")
                         );
 
         validarJornadaFull(colaborador);
@@ -71,23 +68,19 @@ public class DetalleRefrigerioAsistencia {
                         .findByColaborador_IdAndFecha(
                                 idColaborador, fecha)
                         .orElseThrow(() ->
-                                new ResponseStatusException(
-                                        HttpStatus.NOT_FOUND,
-                                        "No registró asistencia el día de hoy"
+                                new ResponseStatusException(HttpStatus.NOT_FOUND, "No registró asistencia el día de hoy"
                                 )
                         );
 
         if (asistencia.getHoraIngreso() == null) {
             throw new ResponseStatusException(
-                    HttpStatus.CONFLICT,
-                    "Debe registrar su ingreso antes del refrigerio"
+                    HttpStatus.CONFLICT, "Debe registrar su ingreso antes del refrigerio"
             );
         }
 
         if (horaActual.isBefore(HORA_REFRIGERIO)) {
             throw new ResponseStatusException(
-                    HttpStatus.FORBIDDEN,
-                    "El refrigerio se habilita a las 13:00"
+                    HttpStatus.FORBIDDEN, "El refrigerio se habilita a las 13:00"
             );
         }
 
@@ -97,8 +90,7 @@ public class DetalleRefrigerioAsistencia {
                 .isPresent()) {
 
             throw new ResponseStatusException(
-                    HttpStatus.CONFLICT,
-                    "Ya registró su refrigerio el día de hoy"
+                    HttpStatus.CONFLICT, "Ya registró su refrigerio el día de hoy"
             );
         }
 
@@ -120,9 +112,7 @@ public class DetalleRefrigerioAsistencia {
         Colaborador colaborador =
                 colaboradorRepositorio.findById(idColaborador)
                         .orElseThrow(() ->
-                                new ResponseStatusException(
-                                        HttpStatus.NOT_FOUND,
-                                        "Colaborador no encontrado"
+                                new ResponseStatusException(HttpStatus.NOT_FOUND, "Colaborador no encontrado"
                                 )
                         );
 
@@ -133,16 +123,12 @@ public class DetalleRefrigerioAsistencia {
                         .findByColaborador_IdAndFecha(
                                 idColaborador, fecha)
                         .orElseThrow(() ->
-                                new ResponseStatusException(
-                                        HttpStatus.NOT_FOUND,
-                                        "No registró asistencia el día de hoy"
+                                new ResponseStatusException(HttpStatus.NOT_FOUND, "No registró asistencia el día de hoy"
                                 )
                         );
 
         if (asistencia.getHoraIngreso() == null) {
-            throw new ResponseStatusException(
-                    HttpStatus.CONFLICT,
-                    "Debe registrar su ingreso antes del refrigerio"
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Debe registrar su ingreso antes del refrigerio"
             );
         }
 
@@ -151,30 +137,22 @@ public class DetalleRefrigerioAsistencia {
                         .findByColaborador_IdAndFecha(
                                 idColaborador, fecha)
                         .orElseThrow(() ->
-                                new ResponseStatusException(
-                                        HttpStatus.NOT_FOUND,
-                                        "No registró la salida al refrigerio hoy"
+                                new ResponseStatusException(HttpStatus.NOT_FOUND, "No registró la salida al refrigerio hoy"
                                 )
                         );
 
         if (refrigerio.getHoraSalidaRefrigerio() == null) {
-            throw new ResponseStatusException(
-                    HttpStatus.CONFLICT,
-                    "Debe registrar la salida al refrigerio primero"
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Debe registrar la salida al refrigerio primero"
             );
         }
 
         if (refrigerio.getHoraRetornoRefrigerio() != null) {
-            throw new ResponseStatusException(
-                    HttpStatus.CONFLICT,
-                    "Ya registró el regreso del refrigerio"
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Ya registró el regreso del refrigerio"
             );
         }
 
         if (horaActual.isBefore(HORA_REFRIGERIO_REGRESO)) {
-            throw new ResponseStatusException(
-                    HttpStatus.FORBIDDEN,
-                    "El regreso del refrigerio se habilita a las 14:00"
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "El regreso del refrigerio se habilita a las 14:00"
             );
         }
 

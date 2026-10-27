@@ -1,5 +1,6 @@
 package com.MarkApp.MarkApp.controladores;
 
+import com.MarkApp.MarkApp.dto.UbicacionRequestDto;
 import com.MarkApp.MarkApp.modelo.DetalleAsistencia;
 import com.MarkApp.MarkApp.servicios.DetalleAsistenciaServicio;
 import org.springframework.http.HttpStatus;
@@ -16,15 +17,15 @@ public class DetalleAsistenciaControlador {
     }
 
     @PostMapping("/ingreso/{idColaborador}")
-    public ResponseEntity<DetalleAsistencia> registrarAsistencia(@PathVariable int idColaborador){
-        DetalleAsistencia asistencia = asistenciaServicio.registrarIngreso(idColaborador);
+    public ResponseEntity<DetalleAsistencia> registrarAsistencia(@PathVariable int idColaborador, @RequestBody UbicacionRequestDto ubicacion){
+        DetalleAsistencia asistencia = asistenciaServicio.registrarIngreso(idColaborador, ubicacion.latitud(), ubicacion.longitud());
 
         return ResponseEntity.status(HttpStatus.CREATED).body(asistencia);
     }
 
     @PatchMapping("/salida/{idColaborador}")
-    public ResponseEntity<DetalleAsistencia> registrarSalida(@PathVariable int idColaborador){
-        DetalleAsistencia asistencia = asistenciaServicio.registrarSalida(idColaborador);
+    public ResponseEntity<DetalleAsistencia> registrarSalida(@PathVariable int idColaborador,@RequestBody UbicacionRequestDto ubicacion){
+        DetalleAsistencia asistencia = asistenciaServicio.registrarSalida(idColaborador, ubicacion.latitud(), ubicacion.longitud());
 
         return ResponseEntity.ok(asistencia);
     }
