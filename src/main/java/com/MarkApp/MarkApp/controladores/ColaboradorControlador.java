@@ -2,6 +2,7 @@
 package com.MarkApp.MarkApp.controladores;
 
 import com.MarkApp.MarkApp.dto.ColaboradorCambiosDTO;
+import com.MarkApp.MarkApp.dto.ColaboradorListadoDTO;
 import com.MarkApp.MarkApp.modelo.Colaborador;
 import com.MarkApp.MarkApp.repositorio.ColaboradorRepositorio;
 import com.MarkApp.MarkApp.servicios.ColaboradorServicio;
@@ -23,9 +24,14 @@ public class ColaboradorControlador {
         this.colaboradorServicio = colaboradorServicio;
     }
 
-    @GetMapping
-    public List<Colaborador> listarColaboradores() {
-        return colaboradorRepositorio.findAll();
+    @GetMapping("/listado")
+    public ResponseEntity<List<ColaboradorListadoDTO>> listarParaAdministracion(){
+        return ResponseEntity.ok(colaboradorServicio.listarParaAdministracion());
+    }
+
+    @GetMapping("/sin-turno")
+    public ResponseEntity<List<Colaborador>> listarSinTurno(){
+        return ResponseEntity.ok(colaboradorRepositorio.buscarColaboradoresSinTurno());
     }
 
     @PostMapping
@@ -48,4 +54,6 @@ public class ColaboradorControlador {
 
         return ResponseEntity.ok(actualizado);
     }
+
+
 }

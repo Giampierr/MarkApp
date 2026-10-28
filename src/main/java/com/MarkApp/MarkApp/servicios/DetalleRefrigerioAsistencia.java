@@ -58,19 +58,14 @@ public class DetalleRefrigerioAsistencia {
         Colaborador colaborador =
                 colaboradorRepositorio.findById(idColaborador)
                         .orElseThrow(() ->
-                                new ResponseStatusException(HttpStatus.NOT_FOUND, "Colaborador no encontrado")
-                        );
+                                new ResponseStatusException(HttpStatus.NOT_FOUND, "Colaborador no encontrado"));
 
         validarJornadaFull(colaborador);
 
         DetalleAsistencia asistencia =
                 detalleAsistenciaRepositorio
-                        .findByColaborador_IdAndFecha(
-                                idColaborador, fecha)
-                        .orElseThrow(() ->
-                                new ResponseStatusException(HttpStatus.NOT_FOUND, "No registró asistencia el día de hoy"
-                                )
-                        );
+                        .findByColaborador_IdAndFecha(idColaborador, fecha).orElseThrow(() ->
+                                new ResponseStatusException(HttpStatus.NOT_FOUND, "No registró asistencia el día de hoy"));
 
         if (asistencia.getHoraIngreso() == null) {
             throw new ResponseStatusException(

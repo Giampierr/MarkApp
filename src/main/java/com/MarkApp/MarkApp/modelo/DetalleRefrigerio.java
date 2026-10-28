@@ -26,7 +26,7 @@ public class DetalleRefrigerio {
 
     private LocalTime horaSalidaRefrigerio;
 
-    @Column(nullable = true)
+    @Column(name = "hora_retorno_refrigerio", nullable = true)
     private LocalTime horaRetornoRefrigerio;
 
     public DetalleRefrigerio() {

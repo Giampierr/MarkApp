@@ -1,8 +1,12 @@
 package com.MarkApp.MarkApp.modelo;
 
+import com.MarkApp.MarkApp.enums.EstadoColaborador;
 import com.MarkApp.MarkApp.enums.Jornada;
 import com.MarkApp.MarkApp.enums.RegimenPensionario;
+import com.MarkApp.MarkApp.util.Validador;
 import jakarta.persistence.*;
+
+import java.util.Objects;
 
 
 @Entity
@@ -34,9 +38,22 @@ public class Colaborador {
 
     @Column(nullable = false,length = 255)
     private String password;
-    
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private EstadoColaborador estadoColaborador;
+
     public Colaborador() {
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getNombres() {
         return nombres;
     }
@@ -58,7 +75,15 @@ public class Colaborador {
     }
 
     public void setDni(String dni) {
-        this.dni = dni;
+        Objects.requireNonNull(dni,"Dni no puede ser null");
+
+        dni = dni.trim();
+
+        if (Validador.validarDni(dni)) {
+            this.dni = dni;
+        } else {
+            throw new IllegalArgumentException("Dni inválido");
+        }
     }
 
     public String getCargo() {
@@ -99,5 +124,13 @@ public class Colaborador {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public EstadoColaborador getEstadoColaborador() {
+        return estadoColaborador;
+    }
+
+    public void setEstadoColaborador(EstadoColaborador estadoColaborador) {
+        this.estadoColaborador = estadoColaborador;
     }
 }

@@ -1,12 +1,15 @@
 package com.MarkApp.MarkApp.servicios;
 
 import com.MarkApp.MarkApp.dto.ColaboradorCambiosDTO;
+import com.MarkApp.MarkApp.dto.ColaboradorListadoDTO;
 import com.MarkApp.MarkApp.modelo.Colaborador;
 import com.MarkApp.MarkApp.repositorio.ColaboradorRepositorio;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
 
 @Service
 public class ColaboradorServicio {
@@ -55,5 +58,7 @@ public class ColaboradorServicio {
         return colaboradorRepositorio.save(colaborador);
     }
 
-
+    public List<ColaboradorListadoDTO> listarParaAdministracion(){
+        return colaboradorRepositorio.listarParaAdministracion();
+    }
 }
