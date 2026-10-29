@@ -30,7 +30,7 @@ public interface ColaboradorRepositorio extends JpaRepository<Colaborador,Intege
             SELECT a.idAsignacion
             FROM AsignacionTurno a
             where a.colaborador.id = c.id
-                AND A.fechaFin IS NULL 
+                AND a.fechaFin IS NULL 
         )
         ORDER BY c.apellidos, c.nombres
 """
