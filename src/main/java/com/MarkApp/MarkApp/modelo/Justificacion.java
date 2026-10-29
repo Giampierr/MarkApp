@@ -41,6 +41,14 @@ public class Justificacion {
     public Justificacion() {
     }
 
+    public int getIdJustificacion() {
+        return idJustificacion;
+    }
+
+    public void setIdJustificacion(int idJustificacion) {
+        this.idJustificacion = idJustificacion;
+    }
+
     public Colaborador getColaborador() {
         return colaborador;
     }

@@ -32,6 +32,14 @@ public class Turno {
     public Turno() {
     }
 
+    public int getIdTurno() {
+        return idTurno;
+    }
+
+    public void setIdTurno(int idTurno) {
+        this.idTurno = idTurno;
+    }
+
     public String getNombre() {
         return nombre;
     }

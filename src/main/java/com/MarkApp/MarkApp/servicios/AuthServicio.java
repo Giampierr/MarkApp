@@ -1,6 +1,7 @@
 package com.MarkApp.MarkApp.servicios;
 
 import com.MarkApp.MarkApp.dto.LoginRespuestaDTO;
+import com.MarkApp.MarkApp.enums.Modulos;
 import com.MarkApp.MarkApp.modelo.Colaborador;
 import com.MarkApp.MarkApp.modelo.Supervisor;
 import com.MarkApp.MarkApp.repositorio.ColaboradorRepositorio;
@@ -17,17 +18,19 @@ public class AuthServicio {
     private final SupervisorRepositorio supervisorRepositorio;
     private final PasswordEncoder passwordEncoder;
     private final JwtServicio jwtServicio;
+    private final AuditoriaServicio auditoriaServicio;
 
     public AuthServicio(
             ColaboradorRepositorio colaboradorRepositorio,
             SupervisorRepositorio supervisorRepositorio,
             PasswordEncoder passwordEncoder,
-            JwtServicio jwtServicio) {
+            JwtServicio jwtServicio, AuditoriaServicio auditoriaServicio) {
 
         this.colaboradorRepositorio = colaboradorRepositorio;
         this.supervisorRepositorio = supervisorRepositorio;
         this.passwordEncoder = passwordEncoder;
         this.jwtServicio = jwtServicio;
+        this.auditoriaServicio = auditoriaServicio;
     }
 
     public LoginRespuestaDTO iniciarSesionColaborador(
@@ -58,6 +61,7 @@ public class AuthServicio {
     }
 
     public LoginRespuestaDTO iniciarSesionSupervisor(String correo ,String password){
+
         Supervisor supervisor = supervisorRepositorio.findByCorreo(correo).orElseThrow(()->
                 new ResponseStatusException(
                         HttpStatus.UNAUTHORIZED,"Credenciales incorrectas"
@@ -74,6 +78,8 @@ public class AuthServicio {
                 "Supervisor",
                 supervisor.getRolSupervisor().name()
         );
+        String detalle = supervisor.getNombre()+"inicio Sesion";
+        auditoriaServicio.crearAuditoria(supervisor, Modulos.Login,"Login",detalle);
 
         return new LoginRespuestaDTO(token,"Supervisor",supervisor.getRolSupervisor().name());
 
