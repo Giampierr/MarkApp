@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
+//Entidad: Justificación
 @Entity
 @Table(name = "justificacion")
 public class Justificacion {
